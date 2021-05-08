@@ -28,7 +28,7 @@ public class ServiceTests {
     public void insertTest2() {
         SessionFactory sessionFactory = HibernateSessionCreator.getSessionFactory();
         Session session = sessionFactory.openSession();
-        new DBHibernateService().addAnimal(10, "Тузик", 2, 2, 2, 3);
+        new DBHibernateService().addAnimal(11, "Тузик", 2, 2, 2, 3);
         session.close();
     }
 
@@ -37,7 +37,7 @@ public class ServiceTests {
     public void insertTest3() {
         SessionFactory sessionFactory = HibernateSessionCreator.getSessionFactory();
         Session session = sessionFactory.openSession();
-        new DBHibernateService().addWorkman(7, "null", 15, 5);
+        new DBHibernateService().addWorkman(7, "2562", 15, 5);
         session.close();
     }
 
