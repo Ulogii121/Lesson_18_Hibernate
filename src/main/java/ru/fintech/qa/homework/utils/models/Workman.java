@@ -10,11 +10,11 @@ import javax.persistence.Table;
 public class Workman {
     @Id
     private int id;
-    @Column(name = "name")
+    @Column(name = "\"name\"")
     private String name;
     @Column(name = "age")
     private int age;
-    @Column(name = "position")
+    @Column(name = "\"position\"")
     private int position;
 
     public final int getId() {

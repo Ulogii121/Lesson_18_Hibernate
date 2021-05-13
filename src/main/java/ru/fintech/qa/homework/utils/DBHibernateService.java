@@ -25,10 +25,21 @@ public class DBHibernateService {
         animal.setPlace(place);
         SessionFactory sessionFactory = HibernateSessionCreator.getSessionFactory();
         Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.save(animal);
-        session.getTransaction().commit();
+        try {
+            session.beginTransaction();
+            session.save(animal);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Невозможно создать питомца!");
+        }
         session.close();
+    }
+
+    public final void addAnimalId(final int maxId) {
+        for (int id = 1; id <= maxId; id++) {
+            addAnimal(id, "TestName", 1, 1, 1, 1);
+        }
     }
 
     public final void addWorkman(final int id, final String name, final int age, final int position) {

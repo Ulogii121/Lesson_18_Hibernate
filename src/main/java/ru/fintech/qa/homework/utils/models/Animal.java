@@ -10,11 +10,11 @@ import javax.persistence.Table;
 public class Animal {
     @Id
     private int id;
-    @Column(name = "name")
+    @Column(name = "\"name\"")
     private String name;
     @Column(name = "age")
     private int age;
-    @Column(name = "type")
+    @Column(name = "\"type\"")
     private int type;
     @Column(name = "sex")
     private int sex;

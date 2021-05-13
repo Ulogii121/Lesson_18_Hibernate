@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import javax.persistence.PersistenceException;
 
 public class ServiceTests {
 
@@ -23,12 +24,11 @@ public class ServiceTests {
         session.close();
     }
 
-    //При добавлении строки с индексом от 1 до 10 тест должен упасть
     @Test
     public void insertTest2() {
         SessionFactory sessionFactory = HibernateSessionCreator.getSessionFactory();
         Session session = sessionFactory.openSession();
-        new DBHibernateService().addAnimal(11, "Тузик", 2, 2, 2, 3);
+        new DBHibernateService().addAnimalId(11);
         session.close();
     }
 
@@ -37,7 +37,11 @@ public class ServiceTests {
     public void insertTest3() {
         SessionFactory sessionFactory = HibernateSessionCreator.getSessionFactory();
         Session session = sessionFactory.openSession();
-        new DBHibernateService().addWorkman(7, "2562", 15, 5);
+         try {
+            new DBHibernateService().addWorkman(7, "", 15, 3);
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+        }
         session.close();
     }
 
@@ -49,7 +53,6 @@ public class ServiceTests {
         int actualId = new DBHibernateService().number("places") + 1;
         new DBHibernateService().addPlace(actualId, 4, 1635, "New");
         int actual = new DBHibernateService().number("places");
-        System.out.println(actual);
         Assertions.assertEquals(expected, actual);
         session.close();
     }

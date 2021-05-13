@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Zoo {
     @Id
     private int id;
-    @Column (name = "name")
+    @Column (name = "\"name\"")
     private String name;
 
     public final int getId() {
